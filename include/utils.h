@@ -8,5 +8,7 @@
 #include <vector>
 
 std::vector<std::string> splitString(const std::string& str, char delimiter);
+std::vector<std::string> read_file(const std::string& filename);
 
+std::string getHashType(const std::string& hash);
 #endif //WEAKPASSWDDETECTOR_UTILS_H

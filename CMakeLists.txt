@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 # 添加可执行文件
 add_executable(weakPasswdDetector main.cpp)
-
+add_compile_definitions(_GLIBCXX_USE_CXX11_ABI=0)
 # 添加头文件目录
 target_include_directories(weakPasswdDetector PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
@@ -20,6 +20,7 @@ set(SOURCE_FILES
         src/tomcat_weak_password.cpp
         src/report_generator.cpp
         src/utils.cpp
+        src/linux_weak_passwd.cpp
 )
 
 # 添加到可执行文件
