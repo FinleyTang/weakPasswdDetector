@@ -3,6 +3,7 @@
 //
 
 #include "linux_weak_passwd.h"
+#include "hash_utils.h"
 #include "utils.h"
 #include <string>
 #include <utility>
@@ -31,4 +32,14 @@ std::vector<std::pair<std::string, std::string>> get_linux_weak_passwd(){
 
     }
     return  host_passwd;
+}
+
+
+bool check_linux_weak_passwd(const std::pair<std::string, std::string> &pair) {
+    std::cout << pair.first << pair.second<< std::endl;
+    std::string hash_type = "ZMdduAeH";
+    std::string passwd = "test";
+    auto hashed_passwd = saltedMd5(passwd, hash_type);
+    std::cout << hashed_passwd << std::endl;
+    return false;
 }

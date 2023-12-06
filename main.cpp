@@ -3,6 +3,9 @@
 #include "include/utils.h"
 #include "include/linux_weak_passwd.h"
 #include <vector>
+
+bool check_linux_weak_passwd(const std::pair<std::string, std::string> &pair);
+
 int main() {
     std::string host = "localhost";  // 目标主机
     int port = 3306; // 目标端口，比如 MySQL 默认端口为 3306
@@ -32,8 +35,14 @@ int main() {
 //    // 输出各个字段值
 //    std::cout << "Username: " << fields[0] << std::endl;
 //    std::cout << "Encrypted Password: " << fields[1] << std::endl;
+    // we should return name, hash_type, hash_value
     std::vector<std::pair<std::string, std::string>>   host_pass = get_linux_weak_passwd();
+    for (const auto& single_pass: host_pass) {
+        check_linux_weak_passwd(single_pass);
+    }
 
 
     return 0;
 }
+
+
