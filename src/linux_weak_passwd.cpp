@@ -10,9 +10,7 @@
 #include <iostream>
 
 std::vector<std::string> get_linux_shadow_info(){
-//    std::vector<std::pair<std::string, std::string>> host_passwd;
     std::string pass_file = "/etc/shadow";
-
     std::vector<std::string> shadow_info = read_file(pass_file);
     return  shadow_info;
 }
@@ -22,12 +20,7 @@ std::pair<std::string,std::string> get_name_and_hashInfo(const std::string &shad
     auto shadow_line_info = splitString(shadow_line, ':');
     auto name = shadow_line_info[0];
 
-
     if(shadow_line_info[1].at(0) =='$'){
-//            auto hash_type_num = shadow_line_info[1].substr(0,3);
-//            auto hashed_pass = shadow_line_info[1].substr(3, shadow_line_info[1].length());
-//            std::cout<<"hash_type:" << hash_type_num<<"pass:  " <<hashed_pass <<std::endl;
-//            auto hashType = getHashType(hash_type_num);
         auto hash_info = shadow_line_info[1];
         name_and_hashInfo.first = name;
         name_and_hashInfo.second = hash_info;
@@ -41,7 +34,6 @@ std::pair<std::string,std::string> get_name_and_hashInfo(const std::string &shad
 
 
 bool check_linux_one_pair_weak_passwd(const std::pair<std::string, std::string> &name_and_hash_info) {
-    std::cout << "========================check_linux_one_pair_weak_passwd============================="<<std::endl;
 
     std::pair<std::string, std::string> result;
     std::cout << name_and_hash_info.first<< std::endl;
@@ -65,10 +57,6 @@ bool check_linux_one_pair_weak_passwd(const std::pair<std::string, std::string> 
         }
     }
 
-
-//    std::string hashed_passwd = openssl_md5_hash_with_salt(pair.second, pair.first);
-//    std::cout << hashed_pass << std::endl;
-//    result.first =
     return false;
 }
 
