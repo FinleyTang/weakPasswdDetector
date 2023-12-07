@@ -9,7 +9,7 @@ add_executable(weakPasswdDetector main.cpp)
 add_compile_definitions(_GLIBCXX_USE_CXX11_ABI=0)
 
 find_package(OpenSSL REQUIRED)
-target_link_libraries(weakPasswdDetector OpenSSL::SSL OpenSSL::Crypto)
+target_link_libraries(weakPasswdDetector OpenSSL::SSL OpenSSL::Crypto crypt)
 
 
 # 添加头文件目录

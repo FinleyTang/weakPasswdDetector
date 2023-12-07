@@ -5,23 +5,19 @@
 #include "hash_utils.h"
 
 #include <iostream>
-#include <openssl/md5.h>
 #include <string>
+#include <cstring>
+#include <crypt.h>
 
-std::string md5(const std::string& input) {
-    unsigned char result[MD5_DIGEST_LENGTH];
-    MD5((const unsigned char*)input.c_str(), input.length(), result);
-
-    std::string hash;
-    char buf[3];
-    for (int i = 0; i < MD5_DIGEST_LENGTH; i++) {
-        sprintf(buf, "%02x", result[i]);
-        hash += buf;
-    }
-
-    return hash;
+std::string openssl_md5_hash(const std::string& password) {
+    // 使用 crypt 函数进行 MD5 加密
+    std::string hashed_password = crypt(password.c_str(), "$1$");
+    return hashed_password;
 }
 
-std::string saltedMd5(const std::string& input, const std::string& salt) {
-    return md5(input + salt);
+std::string openssl_md5_hash_with_salt(const std::string& password, const std::string& salt) {
+    // 使用 crypt 函数进行 MD5 加密
+    std::string hashed_password = crypt(password.c_str(), ("$1$" + salt).c_str());
+    return hashed_password;
 }
+

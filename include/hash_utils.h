@@ -8,7 +8,8 @@
 
 #include <string>
 
-std::string md5(const std::string& input);
-std::string saltedMd5(const std::string& input, const std::string& salt);
+std::string openssl_md5_hash(const std::string& password);
+std::string openssl_md5_hash_with_salt(const std::string& password, const std::string& salt);
+
 
 #endif //WEAKPASSWDDETECTOR_HASH_UTILS_H
